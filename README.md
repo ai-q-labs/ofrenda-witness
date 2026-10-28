@@ -2,6 +2,8 @@
 
 **A ten-minute murder mystery in which the ghost of the victim speaks at his own ofrenda. An open-weight model runs entirely in your browser, and it is only allowed to say what the dead man actually remembers.**
 
+▶ **Play:** https://ai-q-labs.github.io/ofrenda-witness/ (recent Chrome or Edge with WebGPU)
+
 Tomás Ibarra, a retired clockmaker, died at the bottom of his workshop stairs. On the first night of November his granddaughter builds an ofrenda. Place one of his keepsakes on it — his pocket watch, his radio, his reading glasses, his key — and Tomás remembers what that object saw. He never saw who pushed him. You have to work it out.
 
 ## Run
