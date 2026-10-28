@@ -1,0 +1,9 @@
+{
+  "name": "ofrenda-witness",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test verify.test.mjs",
+    "serve": "python -m http.server 8765"
+  }
+}

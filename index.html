@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ofrenda Witness</title>
+<style>
+  :root { --bg: #17110f; --panel: #241a16; --ink: #f3e7d9; --muted: #b9a593; --marigold: #f2a31b; --line: #3a2b24; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 Georgia, "Times New Roman", serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { color: var(--marigold); font-weight: normal; letter-spacing: .02em; margin: 0 0 8px; }
+  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 28px 0 8px; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  ul { padding-left: 18px; margin: 0; } li { margin: 6px 0; } i { color: var(--muted); }
+  #altar { display: flex; flex-wrap: wrap; gap: 8px; }
+  button, select, input { font: inherit; color: var(--ink); background: #2f231e; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+  button { cursor: pointer; } button:disabled { opacity: .45; cursor: default; }
+  .keepsake.on { border-color: var(--marigold); box-shadow: 0 0 0 1px var(--marigold) inset; }
+  #log { min-height: 160px; max-height: 360px; overflow-y: auto; display: grid; gap: 8px; }
+  .line { padding: 8px 10px; border-radius: 8px; }
+  .you { background: #2f231e; justify-self: end; }
+  .ghost { background: #2b2133; border-left: 3px solid var(--marigold); }
+  .system { color: var(--muted); font-style: italic; }
+  .note { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; font-style: normal; }
+  form { display: flex; gap: 8px; margin-top: 10px; } #question { flex: 1; min-width: 0; }
+  #status { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .ofrenda { margin: 18px 0 6px; padding: 18px 12px 10px; border-radius: 12px; text-align: center;
+    background: linear-gradient(#2a1d17, #1d1512); border: 1px solid var(--line); position: relative; }
+  .petals { color: var(--marigold); letter-spacing: .5em; font-size: 14px; opacity: .9; user-select: none; }
+  .frame { display: inline-block; margin: 10px auto 6px; padding: 10px 18px; border: 3px double #8a6a45; border-radius: 6px; background: #120d0b; }
+  .frame b { display: block; font-weight: normal; font-size: 18px; } .frame small { color: var(--muted); }
+  .candles { display: flex; justify-content: center; gap: 46px; margin-top: 24px; }
+  .candle { width: 12px; height: 34px; background: #efe2c8; border-radius: 3px; position: relative; }
+  .candle::before { content: ""; position: absolute; left: 1px; top: -16px; width: 10px; height: 16px; border-radius: 50% 50% 45% 45%;
+    background: radial-gradient(circle at 50% 70%, #fff3b0, #f2a31b 60%, transparent 70%); animation: flicker 1.8s infinite alternate; }
+  @keyframes flicker { 0% { transform: scale(1) rotate(-2deg); opacity: .95 } 50% { transform: scale(.9, 1.08) rotate(2deg); opacity: .8 } 100% { transform: scale(1.05, .95) rotate(-1deg); opacity: 1 } }
+  #shelf { min-height: 30px; margin-top: 10px; font-size: 14px; color: var(--ink); }
+  #shelf span { display: inline-block; margin: 2px 6px; padding: 2px 8px; border-bottom: 1px solid var(--marigold); }
+  @media (prefers-reduced-motion: reduce) { .candle::before { animation: none; } }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="title"></h1>
+  <div class="ofrenda" aria-label="The ofrenda">
+    <div class="petals" aria-hidden="true">✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿</div>
+    <div class="frame"><b>Tomás Ibarra</b><small>clockmaker</small></div>
+    <div class="candles" aria-hidden="true"><div class="candle"></div><div class="candle"></div></div>
+    <div id="shelf"></div>
+  </div>
+  <div id="intro"></div>
+
+  <h2>Light the candle</h2>
+  <section>
+    <div class="row"><select id="model"></select><button id="load">Load the ghost</button></div>
+    <div id="status">The model runs in your browser with WebGPU. Nothing you type leaves this device.</div>
+  </section>
+
+  <h2>The people</h2>
+  <section><ul id="people"></ul></section>
+
+  <h2>The ofrenda</h2>
+  <section><div id="altar"></div></section>
+
+  <h2>Ask Tomás</h2>
+  <section>
+    <div id="log"></div>
+    <form id="ask-form"><input id="question" placeholder="What did you hear before you fell?" autocomplete="off"><button id="ask" disabled>Ask</button></form>
+  </section>
+
+  <h2>Name who pushed him</h2>
+  <section class="row"><select id="suspect"></select><button id="accuse" disabled>Name them</button></section>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
